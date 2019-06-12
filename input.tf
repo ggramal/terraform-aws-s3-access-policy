@@ -1,33 +1,19 @@
-variable "s3_bucket_name" {
-  type = "string"
+variable "ro_iam_policies" {
+  type = object({
+    s3_bucket_name    = string
+    s3_bucket_folders = list(string)
+    user_names        = list(string)
+  })
+  default = null
 }
 
-variable "s3_bucket_arn" {
-  type = "string"
-}
-
-variable "s3_bucket_ro_folders" {
-  type        = "list"
-  default     = []
-  description = "folders to give read only access"
-}
-
-variable "user_names" {
-  type        = "list"
-  description = "List of users to whom aws iam user policy is assigned"
-  default     = []
-}
-
-variable "user_arns" {
-  type        = "list"
-  description = "Principal to whom s3 bucket policy is assigned"
-  default     = []
-}
-
-variable "s3_bucket_rw_folders" {
-  type        = "list"
-  default     = []
-  description = "folders to give read write access"
+variable "rw_iam_policies" {
+  type = object({
+    s3_bucket_name    = string
+    s3_bucket_folders = list(string)
+    user_names        = list(string)
+  })
+  default = null
 }
 
 variable "policy_name" {
